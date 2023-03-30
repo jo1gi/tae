@@ -1,0 +1,19 @@
+[package]
+name = "tae"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+url = "2.3"
+structopt = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.7"
+dirs = { version = "4" }
+base64 = "0.21"
+thiserror = "1.0"
+displaydoc = "0.2"
+
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1
