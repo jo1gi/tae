@@ -5,7 +5,7 @@ pub struct Arguments {
     /// Links to open
     pub urls: Vec<String>,
     /// Path to config file
-    #[structopt(short, long, default_value = "config.toml")]
+    #[structopt(short, long, default_value = "tae.toml")]
     pub config: std::path::PathBuf,
     /// Dry mode (Don't run command)
     #[structopt(long)]

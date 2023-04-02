@@ -21,7 +21,7 @@ pub struct Rule {
 
 /// Load config file on disk
 pub fn load_config(config_file: &Path) -> Result<Config, crate::Error> {
-    let config_path = if config_file != &PathBuf::from("config.toml") && config_file.exists() {
+    let config_path = if config_file.exists() {
         config_file.to_path_buf()
     } else {
         dirs::config_dir()
