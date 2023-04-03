@@ -49,6 +49,8 @@ fn get_variable<'a>(url: &'a Url, key: &str) -> Option<&'a str> {
         "scheme" => Some(url.scheme()),
         "host" => url.host_str(),
         "path" => Some(url.path()),
+        "query" => url.query(),
+        "fragment" => url.fragment(),
         _ => None,
     }
 }

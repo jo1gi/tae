@@ -5,7 +5,11 @@ use crate::config::{Config, Rule};
 fn url_matches_param(url_data: &Option<&str>, param: &Option<String>) -> bool {
     match (param, url_data) {
         (None, _) => true,
-        (Some(param), Some(url_data)) if param == url_data => true,
+        (Some(param), Some(url_data)) => {
+            if let Some(re) = regex::Regex::new(&param).ok() {
+                re.is_match(&url_data)
+            } else { false }
+        },
         _ => false
     }
 }
@@ -13,9 +17,12 @@ fn url_matches_param(url_data: &Option<&str>, param: &Option<String>) -> bool {
 /// Returns true if `rule` matches `url`
 fn url_match_rule(url: &Url, rule: &Rule) -> bool {
     [
+        (Some(url.as_str()), &rule.url),
         (Some(url.scheme()), &rule.scheme),
         (url.host_str(), &rule.host),
         (Some(url.path()), &rule.path),
+        (url.query(), &rule.query),
+        (url.fragment(), &rule.fragment)
     ].iter().all(|(url_data, param)| url_matches_param(url_data, param))
 }
 
@@ -54,7 +61,7 @@ mod test {
         let url = url::Url::parse("https://example.com").unwrap();
         let config = super::Config{rules: vec![
             super::Rule {
-                scheme: Some("https".to_string()),
+                scheme: Some("https?".to_string()),
                 ..Default::default()
             }
         ]};

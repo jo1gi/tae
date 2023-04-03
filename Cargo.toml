@@ -12,6 +12,7 @@ dirs = { version = "4" }
 base64 = "0.21"
 thiserror = "1.0"
 displaydoc = "0.2"
+regex = "1"
 
 [profile.release]
 lto = true

@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 #[derive(Deserialize)]
 pub struct Config {
@@ -8,6 +8,7 @@ pub struct Config {
 
 #[derive(Default, Deserialize)]
 pub struct Rule {
+    pub url: Option<String>,
     pub scheme: Option<String>,
     pub host: Option<String>,
     pub path: Option<String>,
