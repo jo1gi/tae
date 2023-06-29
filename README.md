@@ -14,7 +14,7 @@ Here is an example where youtube is opened in mpv, all other websites are opened
 in firefox, and gemini capsules are openen in amfora.
 ```toml
 [[rules]]
-domain = "youtube.com"
+host = "youtube.com"
 command = "mpv"
 
 [[rules]]
@@ -37,7 +37,7 @@ if the given regex matches.
 | Attribute |                     Example                    |
 |:---------:|:----------------------------------------------:|
 |    url    | https://github.com/jo1gi/tae?a=1#configuration |
-|   scheme  |                      https                     |
+|    host   |                      https                     |
 |   domain  |                   github.com                   |
 |    path   |                   /jo1gi/tae                   |
 |   query   |                       a=1                      |
