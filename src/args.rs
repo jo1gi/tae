@@ -13,4 +13,7 @@ pub struct Arguments {
     /// Don't show command output in terminal
     #[structopt(short="H", long)]
     pub hide_output: bool,
+    /// Enable debug output
+    #[structopt(short, long)]
+    pub debug: bool,
 }

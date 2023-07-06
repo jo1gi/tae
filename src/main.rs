@@ -25,7 +25,9 @@ fn run() -> Result<(), Error> {
             .ok_or_else(|| Error::ParseUrl(url_str.to_string()))?;
         let (new_url, raw_command) = find_command::find_command(url, &config)?;
         let command = format::format_command(&new_url, &raw_command);
-        println!("Command: {command:?}");
+        if args.debug {
+            println!("Command: {command:?}");
+        }
         if !args.dry {
             run_command(&command, args.hide_output)?;
         }
